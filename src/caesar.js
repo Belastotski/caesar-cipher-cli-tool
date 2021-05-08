@@ -5,11 +5,11 @@ export const caesar = (str, amount) => {
         if (ch.match(/[a-z]/i)) {
             const code = ch.charCodeAt(0);
             if (code >= 65 && code <= 90)
-                return out += String.fromCharCode(((code - 65 + amount) % 26) + 65);
+                return out + String.fromCharCode(((code - 65 + amount) % 26) + 65);
             else if (code >= 97 && code <= 122)
-                return out += String.fromCharCode(((code - 97 + amount) % 26) + 97);
+                return out + String.fromCharCode(((code - 97 + amount) % 26) + 97);
         }
-        return out += ch
+        return out + ch
     },'')
 }
 
