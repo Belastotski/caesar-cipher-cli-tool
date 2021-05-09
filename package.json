@@ -5,6 +5,6 @@
   "main": "caesar_cli.js",
   "bin": "caesar_cli.js",
   "dependencies": {
-    "minimist": "^1.2.5"
+    "minimist": "1.2.5"
   }
 }
