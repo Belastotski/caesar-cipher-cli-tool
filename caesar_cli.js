@@ -24,7 +24,18 @@ const stopProcess = (code, ...messages) => {
 const fi = args['input'];
 const fo = args['output'];
 let stdin = fi? fs.createReadStream(fi): process.stdin;
-let stdout = fo? fs.createWriteStream(fo, {flags: 'a'}): process.stdout;
+let stdout = process.stdout;
+if (fo) {
+    try {
+        if (fs.existsSync(fo)) {
+            stdout = fs.createWriteStream(fo, {flags: 'a'})
+        } else stopProcess(9,'Invalid output file');
+    } catch (err) {
+        stopProcess(9,'Invalid output file')
+    }
+}
+
+// let stdout = fo? fs.createWriteStream(fo, {flags: 'a'}): process.stdout;
 let transform = new Transform(shift * (action == 'encode'? 1: -1))
 
 pipeline(
