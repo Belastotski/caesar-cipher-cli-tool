@@ -11,13 +11,17 @@ let args = minimist(rawArguments, {
         i: 'input'
     }
 });
+
 const actionArgs = new Set(['encode','decode'])
-const shift = args['shift']
+let shift = args['shift']
 const action = args['action']
 const stopProcess = (code, ...messages) => {
     console.error(...messages);
     process.exit(code)
 }
+
+if (shift === true && Object.keys(args).filter(v => Number.isInteger(+v)).length)
+    shift = Object.keys(args).filter(v => Number.isInteger(+v))[0] * -1
 
 !Number.isInteger(shift) && stopProcess(9,'Invalid shift argument')
 !actionArgs.has(action) && stopProcess(9, 'Invalid action argument')
