@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { pipeline } = require('stream');
 const Transform = require('./src/code');
 const stopProcess = require('./src/utilites');
